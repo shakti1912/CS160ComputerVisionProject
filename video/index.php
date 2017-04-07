@@ -1,16 +1,26 @@
 <?php
 
 //change for connecting to database
-$connection = mysqli_connect("localhost", "VictorLi", "password", "videoDB");
+//$connection = mysqli_connect("localhost", "", "password", "videoDB");
+
+$config = require("../config.php");
+
 
 if(isset($_POST['submit'])) {
 	$name = $_FILES['file']['name'];
+	echo $name;
+
 	$temp = $_FILES['file']['tmp_name'];
+	echo $temp;
 
 	// moves the uploaded video to the directory of upload
 	move_uploaded_file($_FILES['file']['tmp_name'], "upload/" . $_FILES["file"]["name"]);
-	$url = "http://localhost/video_upload_and_playback/upload/$name";
-	$connection->query("INSERT INTO videos (name, url) VALUES ('" . $name . "', '" . $url . "')");
+	$url = "http://localhost/CS160ComputerVisionProject/video/upload/$name";
+	//$connection->query("INSERT INTO videos (name, url) VALUES ('" . $name . "', '" . $url . "')");
+	$con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
+	$stmt = mysqli_prepare($con,'INSERT INTO videos (name, url) VALUES ("' . $name . '", "' . $url . '")');
+		
+		mysqli_stmt_execute($stmt);
 }
 
 ?>
@@ -25,7 +35,7 @@ if(isset($_POST['submit'])) {
 		<a href="videos.php">Videos</a>
 
 		<!-- refresh the page when submitted -->
-		<form action="index.php" method="POST" enctype="multipart/form-data">
+		<form action="video/index.php" method="POST" enctype="multipart/form-data">
 			<input type="file" name="file" />
 		    <input type="submit" name="submit" value="Upload!" />
 		</form>

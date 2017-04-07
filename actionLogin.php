@@ -24,13 +24,16 @@
 
 
 echo  "Welcome Back ".$first." ".$last." to CS160Project!";
-echo '
-<form>
- <label> Upload your video</label>
- <button type="submit" class="btn btn-lg btn-primary">Upload</button>
+//
+//echo '
+//<form>
+// <label> Upload your video</label>
+// <button type="submit" class="btn btn-lg btn-primary">Upload</button>
 
-      </form>
-      ';
+ //     </form>
+ //     ';
+$index = require("video/index.php");
+
   }
 
 	

@@ -1,7 +1,9 @@
 <!-- watching the certain video -->
 <?php
 
-$connection = mysqli_connect("localhost", "VictorLi", "password", "videoDB");
+$config = require("../config.php");
+$con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
+
 
 ?>
 
@@ -17,7 +19,7 @@ $connection = mysqli_connect("localhost", "VictorLi", "password", "videoDB");
 		if(isset($_REQUEST['id'])) {
 			$id = $_REQUEST['id'];
 			$query = "SELECT * FROM videos WHERE vid = " . $id;
-			$result = $connection->query($query);
+			$result = $con->query($query);
 
 			$row = mysqli_fetch_assoc($result);
 

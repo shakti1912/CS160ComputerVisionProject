@@ -12,6 +12,7 @@ $UserName = $_REQUEST['username'] ;
 $Password = $_REQUEST['password'] ;
 
 $config = require("config.php");
+
 $con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
 
 $stmt = mysqli_prepare($con,'INSERT INTO UserLogin(Username, Password, firstName, lastName) VALUES (?,?,?,?)');

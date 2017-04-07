@@ -2,7 +2,9 @@
 <!-- uses vid to distinguish all the videos -->
 <?php
 
-$connection = mysqli_connect("localhost", "VictorLi", "password", "videoDB");
+$config = require("../config.php");
+$con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
+
 
 ?>
 
@@ -15,7 +17,7 @@ $connection = mysqli_connect("localhost", "VictorLi", "password", "videoDB");
 	<body>
 		<?php
 
-		$result = $connection->query("SELECT * FROM videos");
+		$result = $con->query("SELECT * FROM videos");
 		while($row = mysqli_fetch_assoc($result)) {
 			$id = $row['vid'];
 			$name = $row['name'];

@@ -24,6 +24,14 @@ function InitializeDB()
 		UserIP varchar(100)
         )');
     mysqli_stmt_execute($stmt);
+
+    $stmt = mysqli_prepare($con, 'CREATE TABLE videos (
+    vid INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    url VARCHAR(255)
+)');
+    mysqli_stmt_execute($stmt);
+
     echo ("Database Successfully Initialized. Be sure to change check mysql login is correct.");
 }
 
