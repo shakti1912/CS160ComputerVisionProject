@@ -3,8 +3,8 @@
 function InitializeDB()
 {
 
-     $config = require("config.php");
-    $con = mysqli_connect($config['host'], $config['username'], $config['password']);    
+    $config = require("config.php");
+    $con = mysqli_connect($config['host'], $config['username'], $config['password']);
     $stmt = mysqli_prepare($con, 'DROP DATABASE IF EXISTS CS160');
     mysqli_stmt_execute($stmt);
     $stmt = mysqli_prepare($con,'CREATE DATABASE CS160;' );
@@ -14,7 +14,7 @@ function InitializeDB()
     //Create data table
     $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS UserLogin;');
     mysqli_stmt_execute($stmt);
-    $stmt = mysqli_prepare($con, 'CREATE TABLE UserLogin 
+    $stmt = mysqli_prepare($con, 'CREATE TABLE UserLogin
         (
         Username varchar(100),
 		Password varchar(100),
@@ -28,4 +28,3 @@ function InitializeDB()
 }
 
 InitializeDB();
-
