@@ -23,14 +23,16 @@ class loginController extends Controller
             $checkUserModel = new M\checkUserModel();
             $result = $checkUserModel->doQuery($info);
 
+            //user does not exist
             if(!$result["first"] && !$result["last"])
     		{
                 require_once("./src/views/loginView.php");
                 $loginView = new V\loginView();
+                //displays error message in the login view
                 $result["error_message"] = "Error in username or password";
                 $loginView->render($result);
     		}
-
+            //user does exist and displays the user view
     		else
     		{
                 require_once("./src/views/userView.php");

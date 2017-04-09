@@ -17,6 +17,8 @@ class newUserController extends Controller
         $newUserModel = new M\newUserModel();
         $newUserModel->doQuery($info);
 
+        mkdir('./Users/' . $info["username"], 0777, true);
+
         //redirect page to index.php
         header('Location: index.php');
         exit();

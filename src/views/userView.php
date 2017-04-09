@@ -25,12 +25,13 @@ class userView extends View
 
                 <h1>Welcome Back <?php echo($data["first"] . " " . $data["last"] . "!") ?></h1>
                 <!-- form to upload files -->
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="upload_file.php" method="post" enctype="multipart/form-data">
                     <label for="file"><span>Filename:</span></label>
                     <input type="file" name="file" id="file" />
 
                     <br />
                     <button type="submit" class="btn btn-default" name="submit" value="Submit" />Submit</button>
+                    <input type="hidden" name="username" value=<?php echo('"' . $data["username"] . '"'); ?>>
                 </form>
 
             </body>
