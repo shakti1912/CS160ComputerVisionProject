@@ -21,8 +21,10 @@ class newUserModel extends Model
         $config = require("./src/configs/config.php");
         $con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
 
-        $stmt = mysqli_prepare($con,'INSERT INTO UserLogin(Username, Password, firstName, lastName) VALUES (?,?,?,?)');
+        $stmt = mysqli_prepare($con,'INSERT INTO User(Username, Password, firstName, lastName) VALUES (?,?,?,?)');
         		mysqli_stmt_bind_param($stmt, "ssss", $UserName, $Password, $FName, $LName);
         		mysqli_stmt_execute($stmt);
+
+        $con->close();
     }
 }

@@ -11,19 +11,51 @@ function InitializeDB()
     mysqli_stmt_execute($stmt);
     mysqli_select_db($con,"CS160");
 
-    //Create data table
-    $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS UserLogin;');
+    //Create all data tables
+    $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS User;');
     mysqli_stmt_execute($stmt);
-    $stmt = mysqli_prepare($con, 'CREATE TABLE UserLogin
+
+    $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS Video;');
+    mysqli_stmt_execute($stmt);
+
+    $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS UserVideo;');
+    mysqli_stmt_execute($stmt);
+
+
+    $stmt = mysqli_prepare($con, 'CREATE TABLE User
         (
+        UserID INT NOT NULL AUTO_INCREMENT,
         Username varchar(100),
 		Password varchar(100),
 		firstName varchar(100),
 		lastName varchar(100),
 		tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		UserIP varchar(100)
-        )');
+		UserIP varchar(100),
+        PRIMARY KEY(UserID)
+        );');
     mysqli_stmt_execute($stmt);
+
+    $stmt = mysqli_prepare($con, 'CREATE TABLE Video
+        (
+        VideoID INT NOT NULL AUTO_INCREMENT,
+        FPS SMALLINT,
+        Width SMALLINT,
+        Height SMALLINT,
+        NumberOfFrames INT,
+        Name VARCHAR(100),
+        PRIMARY KEY(VideoID)
+        );');
+    mysqli_stmt_execute($stmt);
+
+    $stmt = mysqli_prepare($con, 'CREATE TABLE UserVideo
+        (
+        UserID INT,
+        VideoID INT,
+        FOREIGN KEY (UserID) REFERENCES User(UserID),
+        FOREIGN KEY (VideoID) REFERENCES Video(VideoID)
+        );');
+    mysqli_stmt_execute($stmt);
+    $con->close();
     echo ("Database Successfully Initialized. Be sure to change check mysql login is correct.");
 }
 
