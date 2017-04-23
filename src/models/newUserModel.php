@@ -21,9 +21,24 @@ class newUserModel extends Model
         $config = require("./src/configs/config.php");
         $con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
 
-        $stmt = mysqli_prepare($con,'INSERT INTO User(Username, Password, firstName, lastName) VALUES (?,?,?,?)');
-        		mysqli_stmt_bind_param($stmt, "ssss", $UserName, $Password, $FName, $LName);
-        		mysqli_stmt_execute($stmt);
+        //check for all user with that username
+        $stmt = mysqli_prepare($con,'SELECT Username FROM User WHERE Username = ?');
+        		mysqli_stmt_bind_param($stmt, "s", $UserName);
+            mysqli_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rowCount = mysqli_num_rows($result);
+
+        mysqli_free_result($result);
+
+        if($rowCount < 1) { //username is not found in database, when the number of rows on query is less than 1
+          $stmt = mysqli_prepare($con,'INSERT INTO User(Username, Password, firstName, lastName) VALUES (?,?,?,?)');
+          		mysqli_stmt_bind_param($stmt, "ssss", $UserName, $Password, $FName, $LName);
+          		mysqli_stmt_execute($stmt);
+              return 1;
+        } else {
+          return 0;
+        }
+
 
         $con->close();
     }

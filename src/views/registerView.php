@@ -49,6 +49,16 @@ class registerView extends View
 
                         <input type="hidden" name="c" value="newUser">
                         <input type="hidden" name="m" value="newUser">
+
+                        <div class="error_message">
+                            <?php
+                            if(isset($data["error_message"]))
+                    		{
+                                ?>
+                                    <p><font color="red"><?php echo($data["error_message"]); ?></font></p>
+                                <?php
+                    		}
+                            ?>
                     </form>
                 </div> <!-- container -->
             </body>

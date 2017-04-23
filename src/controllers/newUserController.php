@@ -15,12 +15,22 @@ class newUserController extends Controller
         //add new user with newUserModel
         require_once("./src/models/newUserModel.php");
         $newUserModel = new M\newUserModel();
-        $newUserModel->doQuery($info);
+        $result = $newUserModel->doQuery($info);
 
-        mkdir('./Users/' . $info["username"], 0777, true);
+        //check if successful creating username
+        if($result) {
+          mkdir('./Users/' . $info["username"], 0777, true);
 
-        //redirect page to index.php
-        header('Location: index.php');
-        exit();
+          //redirect page to index.php
+          header('Location: index.php');
+          exit();
+        }
+        else {
+          $info["error_message"] = "Username already exists";
+
+          require_once("./src/views/registerView.php");
+          $registerView = new V\registerView();
+          $registerView->render($info);
+        }
     }
 }

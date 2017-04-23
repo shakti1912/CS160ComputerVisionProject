@@ -31,7 +31,8 @@ function InitializeDB()
 		lastName varchar(100),
 		tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		UserIP varchar(100),
-        PRIMARY KEY(UserID)
+        PRIMARY KEY(UserID),
+        UNIQUE (Username)
         );');
     mysqli_stmt_execute($stmt);
 
