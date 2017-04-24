@@ -20,7 +20,7 @@ class newVideoModel extends Model
         $VideoID = $con->insert_id;
 
         $stmt = mysqli_prepare($con,'INSERT INTO UserVideo(UserID, VideoID) VALUES (?,?)');
-                mysqli_stmt_bind_param($stmt, "ii", intval($data["userID"]), $VideoID);
+                mysqli_stmt_bind_param($stmt, "ii", intval($data["UserID"]), $VideoID);
                 mysqli_stmt_execute($stmt);
         $con->close();
     }

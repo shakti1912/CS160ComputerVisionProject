@@ -42,10 +42,11 @@ class uploadFileController extends Controller
           $newVideoModel = new M\newVideoModel();
           $newVideoModel->doQuery($info);
 
-        } else {
-          echo('this does not work');
         }
 
         //redirect with all the links to the video
+        require_once("./src/views/userView.php");
+        $userView = new V\userView();
+        $userView->render($info);
     }
 }

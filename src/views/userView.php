@@ -32,10 +32,10 @@ class userView extends View
                     <br />
                     <button type="submit" class="btn btn-default" name="submit" value="Submit" />Submit</button>
                     <input type="hidden" name="username" value=<?php echo('"' . $data["username"] . '"'); ?>>
-                    <input type="hidden" name="userID" value=<?php echo('"' . $data["UserID"] . '"'); ?>>
+                    <input type="hidden" name="UserID" value=<?php echo('"' . $data["UserID"] . '"'); ?>>
 
-                    <input type="hidden" name="firstName" value=<?php echo('"' . $data["first"] . '"'); ?>>
-                    <input type="hidden" name="lastName" value=<?php echo('"' . $data["last"] . '"'); ?>>
+                    <input type="hidden" name="first" value=<?php echo('"' . $data["first"] . '"'); ?>>
+                    <input type="hidden" name="last" value=<?php echo('"' . $data["last"] . '"'); ?>>
                     <p><font color="white">Supported Video Files: avi, flv, wmv, mov, mp4</font></p>
 
                     <div class="error_message">
