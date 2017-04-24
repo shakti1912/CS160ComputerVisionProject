@@ -2,9 +2,10 @@
 
 namespace CS160;
 
+use CS160\models as M;
 use CS160\controllers as C;
 
-if(isset($_REQUEST['username']) && isset($_POST['submit'])) {
+if(isset($_REQUEST['username']) && isset($_POST['submit']) && isset($_FILES)) {
     $username = $_REQUEST['username'];
 
     $fileName = $_FILES['file']['name'];
@@ -17,9 +18,16 @@ if(isset($_REQUEST['username']) && isset($_POST['submit'])) {
     //if video file has the right extension
     //store userID and Video ID to database with uploadFileController
     if(in_array($fileExtension, $extensions)) {
-      move_uploaded_file($_FILES['file']['tmp_name'], "Users/" . $_REQUEST['username'] . '/' .  $_FILES["file"]["name"]);
-      $_REQUEST['filename'] = $fileName;
 
+      require_once("./src/models/newVideoModel.php");
+      $newVideoModel = new M\newVideoModel();
+      $VideoID = $newVideoModel->newVideo($fileName);
+
+      mkdir("Users/" . $username . "/" . $VideoID, 0777, true);
+
+      move_uploaded_file($_FILES['file']['tmp_name'], "Users/" . $username . '/' . $VideoID . '/' .  $_FILES["file"]["name"]);
+      $_REQUEST['filename'] = $fileName;
+      $_REQUEST['VideoID'] = $VideoID;
     } else {
       $_REQUEST['error_message'] = 'Video is not in the right format';
     }

@@ -14,7 +14,7 @@ class uploadFileController extends Controller
     {
         //there is no error on the video format
         if(!isset($info['error_message'])) {
-          $pathToVid = 'Users/' . $info["username"] . '/' . $info["filename"];
+          $pathToVid = 'Users/' . $info["username"] . '/' . $info["VideoID"] . '/' . $info["filename"];
 
           //count number of frames in video
           $command = 'ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 ' . $pathToVid;
@@ -35,13 +35,14 @@ class uploadFileController extends Controller
                   $info["width"] = intval(explode("=", $value)[1]);
               }
           }
-          //$command = '/usr/bin/ffmpeg -i ' . $pathToVid . ' -vf fps=30 /opt/lampp/htdocs/CS160ComputerVisionProject/Users/e/output%d.png';
 
           //add new video metadata to database
           require_once("./src/models/newVideoModel.php");
           $newVideoModel = new M\newVideoModel();
           $newVideoModel->doQuery($info);
 
+          $splitFrame = '/usr/bin/ffmpeg -i ' . $pathToVid . ' -vf fps=30 /opt/lampp/htdocs/CS160ComputerVisionProject/Users/' . $info["username"] . '/' . $info["VideoID"] . '/' . $info["VideoID"] . '.%d.png';
+          shell_exec($splitFrame);
         }
 
         //redirect with all the links to the video
