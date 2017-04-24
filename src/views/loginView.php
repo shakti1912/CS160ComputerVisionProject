@@ -20,6 +20,9 @@ class loginView extends View
 
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
                 <link rel="stylesheet" href="style.css">
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="./src/scripts/script.js" charset="utf-8"></script>
             </head>
             <body>
 
@@ -28,10 +31,10 @@ class loginView extends View
                         <h2>Sign In</h2>
                         <h5><a href="./index.php?c=register&m=register">Click here to register</a></h5>
                         <label for="username"></label>
-                        <input type="text" class="form-control" name = "username" placeholder="Username" id="username">
+                        <input type="text" class="form-control userField" name = "username" placeholder="Username" id="username">
 
                         <label for="password"></label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" id="password">
+                        <input type="password" class="form-control userField" name="password" placeholder="Password" id="password">
 
                         <div class="checkbox">
                             <label>
@@ -39,7 +42,7 @@ class loginView extends View
                             </label>
                         </div> <!-- checkbox -->
 
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">LOG IN</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block" disabled="disabled">LOG IN</button>
 
                         <input type="hidden" name="c" value="checkUser">
                         <input type="hidden" name="m" value="checkUser">

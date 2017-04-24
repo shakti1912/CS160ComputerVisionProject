@@ -20,6 +20,9 @@ class registerView extends View
 
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
                 <link rel="stylesheet" href="style.css">
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="./src/scripts/script.js" charset="utf-8"></script>
             </head>
             <body>
                 <div class="container">
@@ -29,23 +32,23 @@ class registerView extends View
                         <div class="row">
                             <div class="col-xs-6">
                                 <label for="firstName"></label>
-                                <input type="text" class="form-control" name="FirstName" placeholder="First Name" id="firstName">
+                                <input type="text" class="form-control userField" name="FirstName" placeholder="First Name" id="firstName">
                             </div>
 
                             <div class="col-xs-6">
                                 <label for="lastName"></label>
-                                <input type="text" class="form-control" name="LastName" placeholder="Last Name" id="lastName">
+                                <input type="text" class="form-control userField" name="LastName" placeholder="Last Name" id="lastName">
                             </div>
 
                         </div>
 
                         <label for="NewUserName"></label>
-                        <input type="text" class="form-control" name="username" placeholder="Username" id="NewUserName">
+                        <input type="text" class="form-control userField" name="username" placeholder="Username" id="NewUserName">
 
                         <label for="NewUserPassword"></label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" id="NewUserPassword">
+                        <input type="password" class="form-control userField" name="password" placeholder="Password" id="NewUserPassword">
 
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">REGISTER</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block" disabled="disabled">REGISTER</button>
 
                         <input type="hidden" name="c" value="newUser">
                         <input type="hidden" name="m" value="newUser">
@@ -59,6 +62,7 @@ class registerView extends View
                                 <?php
                     		}
                             ?>
+                        </div>
                     </form>
                 </div> <!-- container -->
             </body>
