@@ -32,12 +32,12 @@ class registerView extends View
                         <div class="row">
                             <div class="col-xs-6">
                                 <label for="firstName"></label>
-                                <input type="text" class="form-control userField" name="FirstName" placeholder="First Name" id="firstName">
+                                <input type="text" class="form-control" name="FirstName" placeholder="First Name" id="firstName">
                             </div>
 
                             <div class="col-xs-6">
                                 <label for="lastName"></label>
-                                <input type="text" class="form-control userField" name="LastName" placeholder="Last Name" id="lastName">
+                                <input type="text" class="form-control" name="LastName" placeholder="Last Name" id="lastName">
                             </div>
 
                         </div>

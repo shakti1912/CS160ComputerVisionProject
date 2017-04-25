@@ -14,7 +14,7 @@ class checkUserModel extends Model
 		$password = $data['password'];
 		$config = require("./src/configs/config.php");
 		$con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
-		$stmt = mysqli_prepare($con, "select FirstName, LastName, Username, UserID from User where username=? and Password=?");
+		$stmt = mysqli_prepare($con, "SELECT FirstName, LastName, Username, UserID from User where username=? and Password=?");
 		mysqli_stmt_bind_param($stmt, "ss",  $username, $password);
 		mysqli_stmt_execute($stmt);
 
