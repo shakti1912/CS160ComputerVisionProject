@@ -28,7 +28,7 @@ class registerView extends View
                 <div class="container">
                     <form action="./index.php">
                         <h2>Sign Up</h2>
-
+                        <h5><a href="./index.php">Click here to Sign In</a></h5>
                         <div class="row">
                             <div class="col-xs-6">
                                 <label for="firstName"></label>
