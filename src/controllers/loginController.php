@@ -29,11 +29,21 @@ class loginController extends Controller
                 $loginView = new V\loginView();
                 //displays error message in the login view
                 $result["error_message"] = "Error in username or password";
+
+                session_unset();
+                session_destroy();
                 $loginView->render($result);
     		    } else { //user does exist and displays the user view
+
+                    $_SESSION["username"] = $result["username"];
+                    $_SESSION["password"] = $result["password"];
+                    $_SESSION["first"] = $result["first"];
+                    $_SESSION["last"] = $result["last"];
+                    $_SESSION["UserID"] = $result["UserID"];
+
                     require_once("./src/views/userView.php");
                     $userView = new V\userView();
-                    $userView->render($result);
+                    $userView->render($_SESSION);
             }
 
         }
