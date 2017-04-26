@@ -41,8 +41,16 @@ class uploadFileController extends Controller
           $newVideoModel = new M\newVideoModel();
           $newVideoModel->doQuery($info);
 
-          $splitFrame = '/usr/bin/ffmpeg -i ' . $pathToVid . ' -vf fps=30 /opt/lampp/htdocs/CS160ComputerVisionProject/Users/' . $info["username"] . '/' . $info["VideoID"] . '/' . $info["VideoID"] . '.%d.png';
+          //split frames according to their fps
+          $path = '/opt/lampp/htdocs/CS160ComputerVisionProject/Users/' . $info["username"] . '/' . $info["VideoID"];
+          $splitFrame = '/usr/bin/ffmpeg -i ' . $pathToVid . ' -vf fps=' . $info["fps"] . ' ' . $path . '/' . $info["VideoID"] . '.%d.png';
           shell_exec($splitFrame);
+
+          //get 68 facial points for each frame
+          for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
+            shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
+          }
+
         }
 
         //redirect with all the links to the video
