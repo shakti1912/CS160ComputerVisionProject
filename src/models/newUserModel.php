@@ -17,6 +17,7 @@ class newUserModel extends Model
         $LName = $data['LastName'] ;
         $UserName = $data['username'] ;
         $Password = $data['password'] ;
+        $IPAddr = $_SERVER['REMOTE_ADDR'];
 
         $config = require("./src/configs/config.php");
         $con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
@@ -31,8 +32,8 @@ class newUserModel extends Model
         mysqli_free_result($result);
 
         if($rowCount < 1) { //username is not found in database, when the number of rows on query is less than 1
-          $stmt = mysqli_prepare($con,'INSERT INTO User(Username, Password, firstName, lastName) VALUES (?,?,?,?)');
-          		mysqli_stmt_bind_param($stmt, "ssss", $UserName, $Password, $FName, $LName);
+          $stmt = mysqli_prepare($con,'INSERT INTO User(Username, Password, firstName, lastName, UserIP) VALUES (?,?,?,?,?)');
+          		mysqli_stmt_bind_param($stmt, "sssss", $UserName, $Password, $FName, $LName, $IPAddr);
           		mysqli_stmt_execute($stmt);
               return 1;
         } else {

@@ -29,7 +29,7 @@ function InitializeDB()
 		Password varchar(100),
 		firstName varchar(100),
 		lastName varchar(100),
-		tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 		UserIP varchar(100),
         PRIMARY KEY(UserID),
         UNIQUE (Username)

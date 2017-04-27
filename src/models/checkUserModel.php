@@ -1,7 +1,7 @@
 <?php
 
 namespace CS160\models;
-include("Model.php");
+require_once 'Model.php';
 /**
  * model for adding new user
  */

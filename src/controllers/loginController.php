@@ -41,6 +41,11 @@ class loginController extends Controller
                     $_SESSION["last"] = $result["last"];
                     $_SESSION["UserID"] = $result["UserID"];
 
+                    //last login for User IP address and timestamp
+                    require_once("./src/models/IPTStamp.php");
+                    $IPTStamp = new M\IPTStamp();
+                    $IPTStamp->doQuery($result);
+
                     require_once("./src/views/userView.php");
                     $userView = new V\userView();
                     $userView->render($_SESSION);
