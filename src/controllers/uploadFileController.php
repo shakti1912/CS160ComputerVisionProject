@@ -47,15 +47,21 @@ class uploadFileController extends Controller
           shell_exec($splitFrame);
 
           //get 68 facial points for each frame
-          for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
+          // for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
+          for ($i=1; $i <= 5; $i++) {
             shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
           }
+
+          for($i=1; $i <=5; $i++) {
+            shell_exec("python ./src/scripts/delaunay_triangles.py " . $path . "/" . $info["VideoID"] . "." . $i .".png " . $path . "/" . $info["VideoID"] . "." . $i . "_det_0.pts " . $path . "/out_" . $info["VideoID"] . "." . $i . ".png" );
+          }
+
 
         }
 
         //redirect with all the links to the video
-        require_once("./src/views/userView.php");
-        $userView = new V\userView();
-        $userView->render($info);
+        // require_once("./src/views/userView.php");
+        // $userView = new V\userView();
+        // $userView->render($info);
     }
 }
