@@ -60,8 +60,8 @@ class uploadFileController extends Controller
         }
 
         //redirect with all the links to the video
-        // require_once("./src/views/userView.php");
-        // $userView = new V\userView();
-        // $userView->render($info);
+        require_once("./src/views/userView.php");
+        $userView = new V\userView();
+        $userView->render($info);
     }
 }

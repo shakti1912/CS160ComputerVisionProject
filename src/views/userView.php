@@ -50,6 +50,17 @@ class userView extends View
                     </div>
                 </form>
 
+                <?php
+                  if(!empty($data["Videos"])) {
+                    foreach ($data["Videos"] as $key => $value) {
+                      $link = "./video_view.php?c=view&m=view&name=" . $value[0] . "&width=" . $value[1] . "&height=" . $value[2] . "&user=" . $data['username'] . "&VideoID=" . $value[3];
+                      ?>
+                        <a href=<?php echo($link); ?>><?php echo($value[0]); ?></a></br>
+                      <?php
+                    }
+                  }
+                 ?>
+
             </body>
         </html>
 

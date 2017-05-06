@@ -46,6 +46,11 @@ class loginController extends Controller
                     $IPTStamp = new M\IPTStamp();
                     $IPTStamp->doQuery($result);
 
+                    require_once("./src/models/getVideosModel.php");
+                    $getVideosModel = new M\getVideosModel();
+                    $Videos = $getVideosModel->doQuery($result);
+                    $_SESSION["Videos"] = $Videos;
+
                     require_once("./src/views/userView.php");
                     $userView = new V\userView();
                     $userView->render($_SESSION);
