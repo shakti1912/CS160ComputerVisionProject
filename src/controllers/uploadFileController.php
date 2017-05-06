@@ -56,12 +56,19 @@ class uploadFileController extends Controller
             shell_exec("python ./src/scripts/delaunay_triangles.py " . $path . "/" . $info["VideoID"] . "." . $i .".png " . $path . "/" . $info["VideoID"] . "." . $i . "_det_0.pts " . $path . "/out_" . $info["VideoID"] . "." . $i . ".png" );
           }
 
-
+          //ffmpeg to stitch together the video
         }
 
-        //redirect with all the links to the video
-        require_once("./src/views/userView.php");
-        $userView = new V\userView();
-        $userView->render($info);
+        $arr = [
+          'width' => $info['width'],
+          'height' => $info['height'],
+          'user' => $info['username'],
+          'VideoID' => $info['VideoID'],
+          'name' => $info["filename"] //change this to the face mesh video
+        ];
+        //redirect to face mesh video
+        require_once("./src/views/videoView.php");
+        $videoView = new V\videoView();
+        $videoView->render($arr);
     }
 }

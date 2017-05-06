@@ -25,6 +25,7 @@ class videoView extends View
                 <script src="./src/scripts/script.js" charset="utf-8"></script>
             </head>
             <body>
+                <a href="index.php">HOME</a>
                 <h1><?php echo($data['name']) ?></h1>
                 <div class="container">
                   <video width="<?php echo($data['width']) ?>" height="<?php echo($data['height']) ?>" controls>

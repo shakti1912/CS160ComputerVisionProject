@@ -4,8 +4,6 @@ namespace CS160;
 
 use CS160\controllers as C;
 
-//starts session
-session_start();
 if(isset($_REQUEST['c']) && isset($_REQUEST['m']) && isset($_REQUEST['name']) && isset($_REQUEST['width']) && isset($_REQUEST['height']) && isset($_REQUEST['user']) && isset($_REQUEST['VideoID'])) {
 
   if($_REQUEST['c'] === "view" && $_REQUEST['m'] === "view") {
