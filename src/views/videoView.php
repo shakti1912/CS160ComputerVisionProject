@@ -29,7 +29,8 @@ class videoView extends View
                 <div class="container">
                   <video width="<?php echo($data['width']) ?>" height="<?php echo($data['height']) ?>" controls>
                     <?php $video = './Users/' . $data['user'] . '/' . $data['VideoID'] . '/' . $data['name']; ?>
-                    <source src="<?php echo($video); ?>" type="video/avi">
+                    <source src="<?php echo($video); ?>" type="video/mp4">
+                    Your browser does not support the video tag
                   </video>
                 </div> <!-- container -->
             </body>
