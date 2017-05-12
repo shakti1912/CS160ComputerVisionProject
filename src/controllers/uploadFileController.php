@@ -48,8 +48,12 @@ class uploadFileController extends Controller
 
           //get 68 facial points for each frame
           // for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
-          for ($i=1; $i <= 5; $i++) {
+          for ($i=1; $i <= 2; $i++) {
             shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
+          }
+
+	  for ($i=1; $i <= 2; $i++) {
+            shell_exec("/opt/lampp/htdocs/CS160ComputerVisionProject/src/scripts/eyeLike " . $path . '/' . $info["VideoID"] . "." . $i . ".png");
           }
 
           for($i=1; $i <=5; $i++) {
