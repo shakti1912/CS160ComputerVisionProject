@@ -77,6 +77,12 @@ class uploadFileController extends Controller
           $videoView = new V\videoView();
           $videoView->render($arr);
         } else {
+
+          require_once("./src/models/getVideosModel.php");
+          $getVideosModel = new M\getVideosModel();
+          $Videos = $getVideosModel->doQuery($info);
+          $info["Videos"] = $Videos;
+
           require_once("./src/views/userView.php");
           $userView = new V\userView();
           $userView->render($info);

@@ -29,7 +29,7 @@ if(isset($_REQUEST['username']) && isset($_POST['submit']) && isset($_FILES)) {
       $_REQUEST['filename'] = $fileName;
       $_REQUEST['VideoID'] = $VideoID;
     } else {
-      $_REQUEST['error_message'] = 'Video is not in the right format';
+      $_REQUEST['error_message'] = 'Must be in the right format';
     }
     require_once("./src/controllers/uploadFileController.php");
     $uploadFileController = new C\uploadFileController();
