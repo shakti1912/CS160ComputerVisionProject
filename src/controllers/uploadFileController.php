@@ -47,32 +47,41 @@ class uploadFileController extends Controller
           shell_exec($splitFrame);
 
           //get 68 facial points for each frame
-          // for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
-          for ($i=1; $i <= 2; $i++) {
+
+          for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
             shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
           }
 
-	  for ($i=1; $i <= 2; $i++) {
+	        for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
             shell_exec("/opt/lampp/htdocs/CS160ComputerVisionProject/src/scripts/eyeLike " . $path . '/' . $info["VideoID"] . "." . $i . ".png");
           }
 
-          for($i=1; $i <=5; $i++) {
+          for($i=1; $i <= $info["NumberOfFrames"]; $i++) {
             shell_exec("python ./src/scripts/delaunay_triangles.py " . $path . "/" . $info["VideoID"] . "." . $i .".png " . $path . "/" . $info["VideoID"] . "." . $i . "_det_0.pts " . $path . "/out_" . $info["VideoID"] . "." . $i . ".png" );
           }
 
+          $fileNameWithoutExtenstions = substr($info["filename"], 0, -4);
           //ffmpeg to stitch together the video
+          shell_exec("ffmpeg -r " . $info["fps"] . " -start_number 1 -f image2 -i /opt/lampp/htdocs/CS160ComputerVisionProject/Users/" . $info["username"] . "/" . $info["VideoID"] . "/out_" . $info["VideoID"] . ".%d.png -c:v libx264 /opt/lampp/htdocs/CS160ComputerVisionProject/Users/" . $info["username"] . "/" . $info["VideoID"] . "/out_" . $fileNameWithoutExtenstions . ".mp4");
+
+          $arr = [
+            'width' => $info['width'],
+            'height' => $info['height'],
+            'user' => $info['username'],
+            'VideoID' => $info['VideoID'],
+            'name' => "out_" . $fileNameWithoutExtenstions . ".mp4"  //change this to the face mesh video
+          ];
+
+          //redirect to face mesh video
+          require_once("./src/views/videoView.php");
+          $videoView = new V\videoView();
+          $videoView->render($arr);
+        } else {
+          require_once("./src/views/userView.php");
+          $userView = new V\userView();
+          $userView->render($info);
         }
 
-        $arr = [
-          'width' => $info['width'],
-          'height' => $info['height'],
-          'user' => $info['username'],
-          'VideoID' => $info['VideoID'],
-          'name' => $info["filename"] //change this to the face mesh video
-        ];
-        //redirect to face mesh video
-        require_once("./src/views/videoView.php");
-        $videoView = new V\videoView();
-        $videoView->render($arr);
+
     }
 }
