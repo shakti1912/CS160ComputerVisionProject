@@ -10,6 +10,17 @@ Calculate the location of your pupils and draw a face mesh on faces. This projec
 
 ## Code Example
 
+User login and server side authentication
+```php
+        $username = $data['username'];
+		$password = $data['password'];
+		$config = require("./src/configs/config.php");
+		$con = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
+		$stmt = mysqli_prepare($con, "SELECT FirstName, LastName, Username, Password, UserID from User where username=? and Password=?");
+		mysqli_stmt_bind_param($stmt, "ss",  $username, $password);
+		mysqli_stmt_execute($stmt);
+```
+
 Extract and store metadata about the video in database
 ```php
 $stmt = mysqli_prepare($con,'SELECT Name, Width, Height, v.VideoID FROM UserVideo u JOIN Video v ON u.VideoID = v.VideoID WHERE UserID = ?');
