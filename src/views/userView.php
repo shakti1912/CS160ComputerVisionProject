@@ -23,7 +23,7 @@ class userView extends View
             </head>
             <body>
 
-                <h1>Welcome Back<?php echo($data["first"] . " " . $data["last"]) ?>! (<a href="logout.php">LOGOUT</a>)</h1>
+                <h1>Welcome Back <?php echo($data["first"] . " " . $data["last"]) ?>! (<a href="logout.php">LOGOUT</a>)</h1>
                 <!-- form to upload files -->
                 <form action="upload_file.php" method="post" enctype="multipart/form-data">
                     <label for="file"><span>Filename:</span></label>
