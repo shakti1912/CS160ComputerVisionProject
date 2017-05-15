@@ -38,10 +38,11 @@ def draw_delaunay(img, subdiv, delaunay_color ) :
             cv2.line(img, pt1, pt2, delaunay_color, 1, cv2.LINE_AA, 0)
             cv2.line(img, pt2, pt3, delaunay_color, 1, cv2.LINE_AA, 0)
             cv2.line(img, pt3, pt1, delaunay_color, 1, cv2.LINE_AA, 0)
-def rets(filename):
+def rets(filename, filename2):
     #script, filename = argv
     print filename
     file = open(filename, "r")
+    eyeLikefile = open(filename2, "r")
 
 #var index
 #print file.read()
@@ -55,6 +56,9 @@ def rets(filename):
 # find index of { and inden of }
 
     matches = []
+    lst = []
+    lst2 = []
+    tup = ()
     regex = re.compile(r"\d*\.\d+\s+\d*\.\d+")
 
     for line in file:
@@ -62,16 +66,23 @@ def rets(filename):
 
     #print type(pointsStr)
     #print pointsStr
-        lst = []
-        tup = ()
+        
         if(len(pointsStr) != 0):
             lst = pointsStr[0].split(' ')
             x = int(float(lst[0]))
             y =  int(float(lst[1]))
             tup = (x,y)
             matches.append(tup)
-    #print lst
 
+    for line in eyeLikefile:
+        pointsStr2 = regex.findall(line)
+    #print lst
+        if(len(pointsStr2) != 0):
+            lst2 = pointsStr2[0].split(' ')
+            x = int(lst2[0])
+            y =  int(lst2[1])
+            tup = (x,y)
+            matches.append(tup)
 
     file.close()
 
@@ -101,16 +112,14 @@ if __name__ == '__main__':
     # Rectangle to be used with Subdiv2D
     size = img.shape
     rect = (0, 0, size[1], size[0])
-
     # Create an instance of Subdiv2D
     subdiv = cv2.Subdiv2D(rect);
 
     # Create an array of points.
     #############################################################################
     points = [];
-
-    points = rets(argv[2])
-    del points[-1]
+    points = rets(argv[2], argv[4])
+    #points = rets(argv[2])
     print points
 
     # Insert points into subdiv

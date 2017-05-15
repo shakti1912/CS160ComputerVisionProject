@@ -48,7 +48,7 @@ class uploadFileController extends Controller
 
           //get 68 facial points for each frame
 
-          for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
+          for ($i=1; $i <= 2; $i++) {
             shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
           }
 
@@ -57,7 +57,7 @@ class uploadFileController extends Controller
           }
 
           for($i=1; $i <= $info["NumberOfFrames"]; $i++) {
-            shell_exec("python ./src/scripts/delaunay_triangles.py " . $path . "/" . $info["VideoID"] . "." . $i .".png " . $path . "/" . $info["VideoID"] . "." . $i . "_det_0.pts " . $path . "/out_" . $info["VideoID"] . "." . $i . ".png" );
+            shell_exec("python ./src/scripts/delaunay_triangles.py " . $path . "/" . $info["VideoID"] . "." . $i .".png " . $path . "/" . $info["VideoID"] . "." . $i . "_det_0.pts " . $path . "/out_" . $info["VideoID"] . "." . $i . ".png " . $path . "/" . $info["VideoID"] . "." . $i . ".png_pupils.txt" );
           }
 
           $fileNameWithoutExtenstions = substr($info["filename"], 0, -4);
