@@ -4,6 +4,8 @@ CS 160 Class Project - Build a CV pipeline.
 
 Needs a Users directory
 
+# ![logo](media/logo2.jpg)
+
 ## Overview
 
 Calculate the location of your pupils and draw a face mesh on faces. This project determines of the above features on each still image from extracted from a video uploaded by the user on a video processing web-based application.
