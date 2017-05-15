@@ -4,7 +4,7 @@ CS 160 Class Project - Build a CV pipeline.
 
 Needs a Users directory
 
-# ![CS160ComputerVisionProject](media/logo2.jpg)
+# ![CS160ComputerVisionProject](logo3.jpg)
 
 ## Overview
 
