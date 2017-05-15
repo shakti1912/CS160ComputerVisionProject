@@ -51,7 +51,7 @@ class uploadFileController extends Controller
           // for ($i=1; $i <= 2; $i++) {
           //   shell_exec("~/Downloads/OpenFace/build/bin/FaceLandmarkImg -f " . $path . '/' . $info["VideoID"] . "." . $i . ".png" . " -ofdir " . $path);
           // }
-          shell_exec("python ./src/scripts/OpenFace.py " . $path . " " . $info["VideoID"] . " " $info["NumberOfFrames"]);
+          shell_exec("python ./src/scripts/OpenFace.py " . $path . " " . $info["VideoID"] . " " . $info["NumberOfFrames"]);
 
 	        for ($i=1; $i <= $info["NumberOfFrames"]; $i++) {
             shell_exec("/opt/lampp/htdocs/CS160ComputerVisionProject/src/scripts/eyeLike " . $path . '/' . $info["VideoID"] . "." . $i . ".png");

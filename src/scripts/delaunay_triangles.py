@@ -74,6 +74,7 @@ def rets(filename, filename2):
             tup = (x,y)
             matches.append(tup)
 
+    del matches[-1]
     for line in eyeLikefile:
         pointsStr2 = regex.findall(line)
     #print lst
